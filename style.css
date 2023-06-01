@@ -22,8 +22,16 @@ body{
 .score{
     position: absolute;
     font-size: 3vmin;
-    top: 1vmin;
+    top: 5vmin;
     right: 1vmin;
+}
+
+.max-score{
+    position: absolute;
+    top: 1vmin;
+    font-size: 3vmin;
+    right: 1vmin;
+    color: red;
 }
 
 .start-screen{

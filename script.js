@@ -9,6 +9,8 @@ const SPEED_SCALE_INCREASE = 0.00001;
 const worldElement = document.querySelector("[data-world]");
 const startScreenElement = document.querySelector("[data-start-screen]");
 const scoreElement = document.querySelector("[data-score]");
+const maxScoreElement = document.querySelector("[data-max-score]");
+let maxScore=0;
 
 setPixelToWorldScale();
 window.addEventListener("resize", setPixelToWorldScale);
@@ -53,6 +55,7 @@ function update(time) {
 function handleStart() {
   speedScale = 1;
   score = 0;
+  lastTime = null;
   setupGround();
   setupDino();
   setupCactus();
@@ -86,6 +89,8 @@ function isCollision(rect1, rect2) {
 function handleLose() {
   setDinoLose();
   startScreenElement.classList.remove("hide");
+  maxScore = Math.max(score, maxScore);
+  maxScoreElement.innerHTML = `MAX: ${parseInt(maxScore)}`;
   setTimeout(() => {
     document.addEventListener("keydown", handleStart, { once: true });
   }, 300);
